@@ -1,14 +1,14 @@
-(defproject gp-surgery-mono-playground/app-patients "0.0.1"
+(defproject gp-surgery-mono-playground/app-api-gateway "0.0.1"
   :description "API gateway service"
   :monolith/inherit true
 
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [metosin/compojure-api "2.0.0-alpha30"]]
 
-  :ring {:handler app-patients.handler/app}
-  :uberjar-name "app-patients.jar"
+  :ring {:handler app-api-gateway.handler/app}
+  :uberjar-name "app-api-gateway.jar"
 
-  :docker {:image-name "myregistry.example.org/app-patients"
+  :docker {:image-name "myregistry.example.org/app-api-gateway"
            :dockerfile "Dockerfile"
            :build-dir  "."}
 

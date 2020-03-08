@@ -27,7 +27,8 @@
     :unstable #(= (first (:version %)) \0)}
 
    :project-dirs
-   ["apps/app-patients"
+   ["apps/app-api-gateway"
+    "apps/app-patients"
     "libs/*"
     "not-found"]}
 

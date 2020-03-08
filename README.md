@@ -1,7 +1,7 @@
 # gp-surgery-mono-playground
 
 ## Assumptions
-* Monorepo leveraging `lein monolith` and `lein docker` with Dockerised backend services
+* Monorepo leveraging `lein monolith`, `lein docker`, `docker-compose` for local development of Dockerised `compojure` services
 * Event sourcing, Kafka, Kafka Streams, Clojure and Swagger running in Docker
 * A React-Native mobile all that allows patients to book appointments, view test results and prescriptions.
 * A React web app that allows an imaginary GP Surgery manage patients, appointments, test results and prescriptions.
@@ -48,8 +48,10 @@ lein monolith info
 ## Installation
 
 ### Build images
-lein monolith each uberjar
-lein monolith each docker build
+`lein monolith each ring uberjar`
+
+### Run using docker-compose 
+`docker-compose up --build`
 
 ## License
 
