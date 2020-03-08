@@ -1,0 +1,1 @@
+[{:dependencies {commons-io {:vsn "2.5", :native-prefix nil}, org.clojure/clojure {:vsn "1.8.0", :native-prefix nil}}, :native-path "target/native"} {:native-path "target/native", :dependencies {commons-io {:vsn "2.5", :native-prefix nil, :native? false}, org.clojure/clojure {:vsn "1.8.0", :native-prefix nil, :native? false}}}]
