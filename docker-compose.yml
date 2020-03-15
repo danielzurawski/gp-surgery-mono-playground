@@ -9,8 +9,6 @@ services:
     build: apps/app-patients
     ports:
       - "3001:3000"
-    environment:
-      BOOTSTRAP_SERVERS: localhost:9092
     depends_on:
       - kafka
 
