@@ -1,14 +1,6 @@
 (ns app-api-gateway.handler
   (:require [compojure.api.sweet :refer :all]
-            [ring.util.http-response :refer :all]
-            [schema.core :as s]))
-
-(s/defschema Pizza
-  {:name s/Str
-   (s/optional-key :description) s/Str
-   :size (s/enum :L :M :S)
-   :origin {:country (s/enum :FI :PO)
-            :city s/Str}})
+            [ring.util.http-response :refer :all]))
 
 (def app
   (api
@@ -22,14 +14,8 @@
     (context "/api" []
       :tags ["api"]
 
-      (GET "/plus" []
+      (GET "/sum" []
         :return {:result Long}
         :query-params [x :- Long, y :- Long]
-        :summary "adds two numbers together"
-        (ok {:result (+ x y)}))
-
-      (POST "/echo" []
-        :return Pizza
-        :body [pizza Pizza]
-        :summary "echoes a Pizza"
-        (ok pizza)))))
+        :summary "Retrieves a list of patients"
+        (ok {:result (+ x y)})))))

@@ -1,14 +1,21 @@
 (ns app-patients.handler
   (:require [compojure.api.sweet :refer :all]
+            [compojure.api.exception :as ex]
             [ring.util.http-response :refer :all]
-            [schema.core :as s]))
+            [schema.core :as s]
+            [app-patients.patients-producer :as patients-producer]))
 
-(s/defschema Pizza
+(s/defschema Patient
   {:name s/Str
    (s/optional-key :description) s/Str
-   :size (s/enum :L :M :S)
-   :origin {:country (s/enum :FI :PO)
+   :gender (s/enum :F :M)
+   :origin {:country s/Str
             :city s/Str}})
+
+(defn custom-handler [f type]
+  (fn [^Exception e data request]
+    (f {:message e, :type type})))
+;; (.getMessage e)
 
 (def app
   (api
@@ -17,19 +24,24 @@
       :spec "/swagger.json"
       :data {:info {:title "App-patients"
                     :description "Compojure Api example"}
-             :tags [{:name "api", :description "some apis"}]}}}
+             :tags [{:name "api", :description "Patients service APIs"}]}}
+     :exceptions {:handlers {
+                             ;;::ex/request-validation (ex/with-logging ex/request-parsing-handler :info)
+                             ::ex/default (custom-handler internal-server-error :unknown)}}}
 
-    (context "/api" []
-      :tags ["api"]
-
-      (GET "/plus" []
-        :return {:result Long}
-        :query-params [x :- Long, y :- Long]
-        :summary "adds two numbers together"
-        (ok {:result (+ x y)}))
+    (context "/patients" []
+      :tags ["patients"]
 
       (POST "/echo" []
-        :return Pizza
-        :body [pizza Pizza]
-        :summary "echoes a Pizza"
-        (ok pizza)))))
+        :return Patient
+        :body [patient Patient]
+        :summary "echoes a Patient"
+        (ok patient))
+
+      (POST "/" []
+        :return Patient
+        :body [patient Patient]
+        :summary "Saves a Patient record onto Kafka"
+        (do
+          (patients-producer/save-patient-record! patient)
+          (ok patient))))))
