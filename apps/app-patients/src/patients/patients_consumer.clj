@@ -29,8 +29,7 @@
   (with-open [all (.all (.store kafka-streams
                                 store-name
                                 (QueryableStoreTypes/keyValueStore)))]
-    (doall (map (fn [x] {:key (.key x)
-                         :value (.value x)})
+    (doall (map (fn [x] (.value x))
                 (iterator-seq all)))))
 
 (defn init []
