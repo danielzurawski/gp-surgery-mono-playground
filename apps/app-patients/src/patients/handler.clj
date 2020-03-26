@@ -1,9 +1,8 @@
-(ns app-patients.handler
+(ns patients.handler
   (:require [compojure.api.sweet :refer :all]
             [compojure.api.exception :as ex]
             [ring.util.http-response :refer :all]
-            [schema.core :as s]
-            [app-patients.patients-producer :as patients-producer]))
+            [schema.core :as s]))
 
 (s/defschema Patient
   {:name s/Str
@@ -15,9 +14,8 @@
 (defn custom-handler [f type]
   (fn [^Exception e data request]
     (f {:message e, :type type})))
-;; (.getMessage e)
 
-(def app
+(defn init [get-all-record-fn save-record-fn! stream]
   (api
     {:swagger
      {:ui "/"
@@ -32,6 +30,11 @@
     (context "/patients" []
       :tags ["patients"]
 
+      (GET "/" []
+        :return [Patient]
+        :summary "Returns list of patients from local KStore"
+        (ok (get-all-record-fn stream)))
+
       (POST "/echo" []
         :return Patient
         :body [patient Patient]
@@ -43,5 +46,5 @@
         :body [patient Patient]
         :summary "Saves a Patient record onto Kafka"
         (do
-          (patients-producer/save-patient-record! patient)
+          (save-record-fn! patient)
           (ok patient))))))

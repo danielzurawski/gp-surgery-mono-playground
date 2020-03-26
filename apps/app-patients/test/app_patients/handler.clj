@@ -1,7 +1,7 @@
-(ns app-patients.test.handler
+(ns patients.test.handler
   (:require [cheshire.core :as cheshire]
             [clojure.test :refer :all]
-            [app-patients.handler :refer :all]
+            [patients.handler :refer :all]
             [ring.mock.request :as mock]))
 
 (defn parse-body [body]

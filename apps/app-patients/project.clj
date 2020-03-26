@@ -4,9 +4,12 @@
 
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [metosin/compojure-api "2.0.0-alpha30"]
-                 [fundingcircle/jackdaw "0.6.7"]]
+                 [org.apache.kafka/kafka-streams "2.3.1"]
+                 [fundingcircle/jackdaw "0.6.7"]
+                 [ring "1.8.0"]]
 
-  :ring {:handler app-patients.handler/app}
+  :main patients.main
+
   :uberjar-name "app-patients.jar"
 
   :docker {:image-name "myregistry.example.org/app-patients"
