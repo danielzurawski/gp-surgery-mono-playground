@@ -1,0 +1,22 @@
+{
+  "name": "app-patients-mobile",
+  "version": "0.0.1",
+  "description": "React Native Expo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielzurawski/gp-surgery-mono-playground.git"
+  },
+  "author": "Daniel Zurawski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielzurawski/gp-surgery-mono-playground/issues"
+  },
+  "homepage": "https://github.com/danielzurawski/gp-surgery-mono-playground#readme",
+  "devDependencies": {
+    "expo-cli": "^3.16.1"
+  }
+}
