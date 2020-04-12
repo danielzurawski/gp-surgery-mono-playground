@@ -1,4 +1,4 @@
-(ns patients.test.handler
+(ns patients.handler-test
   (:require [cheshire.core :as cheshire]
             [clojure.test :refer :all]
             [patients.handler :as handler]

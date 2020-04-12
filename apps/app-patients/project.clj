@@ -1,12 +1,13 @@
 (defproject gp-surgery-mono-playground/app-patients "0.0.1"
-  :description "API gateway service"
+  :description "Patients service"
+
+  :plugins [[lein-monolith "1.4.0"]]
+
   :monolith/inherit true
 
-  :dependencies [[org.clojure/clojure "1.10.0"]
-                 [metosin/compojure-api "2.0.0-alpha30"]
+  :dependencies [[metosin/compojure-api "2.0.0-alpha30"]
                  [org.apache.kafka/kafka-streams "2.3.1"]
-                 [fundingcircle/jackdaw "0.6.7"]
-                 [ring "1.8.0"]]
+                 [fundingcircle/jackdaw "0.6.7"]]
 
   :main patients.main
 

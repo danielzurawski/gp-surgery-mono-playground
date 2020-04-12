@@ -24,7 +24,7 @@
                     :description "Compojure Api example"}
              :tags [{:name "api", :description "Patients service APIs"}]}}
      :exceptions {:handlers {
-                             ;;::ex/request-validation (ex/with-logging ex/request-parsing-handler :info)
+                            ;;  ::ex/request-validation (ex/with-logging ex/request-parsing-handler :info)
                              ::ex/default (custom-handler internal-server-error :unknown)}}}
 
     (context "/patients" []
