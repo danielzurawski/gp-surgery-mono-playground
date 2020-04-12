@@ -6,8 +6,11 @@
    [lein-pprint "1.2.0"]
    [io.sarnowski/lein-docker "1.0.0"]]
 
-  :dependencies
-  [[org.clojure/clojure "1.10.1"]]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [metosin/compojure-api "2.0.0-alpha30"]
+                 [ring "1.8.0"]
+                 [buddy/buddy-auth "2.2.0"]
+                 [mount "0.1.16"]]
 
   :test-selectors
   {:unit (complement :integration)
@@ -16,7 +19,8 @@
   :monolith
   {:inherit
    [:test-selectors
-    :env]
+    :env
+    :dependencies]
 
    :inherit-leaky
    [:repositories
