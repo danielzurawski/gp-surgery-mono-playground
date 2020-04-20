@@ -5,6 +5,8 @@
 
   :monolith/inherit true
 
+  :dependencies [[clj-http "3.10.1"]]
+
   :main gateway.main
 
   :uberjar-name "app-api-gateway.jar"
