@@ -1,5 +1,6 @@
-(ns patients.patients-consumer
+(ns patients.patients-stream
   (:require
+   [mount.core :refer [defstate]]
    [jackdaw.serdes.edn :refer [serde]]
    [patients.patients-kafka-util :as p-kafka-util])
 
@@ -24,17 +25,23 @@
   (KafkaStreams. (.build (create-patients-materialised-view))
                  (StreamsConfig. config)))
 
+(defn create-patients-stream []
+  (let [stream (build-patients-stream p-kafka-util/kafka-config)]
+    (doto stream
+      (.cleanUp)
+      (.start)
+      (.state))
+    stream))
 
-(defn get-all-patients-local-store [kafka-streams]
-  (with-open [all (.all (.store kafka-streams
-                                store-name
+
+(defstate patients-stream
+  :start (create-patients-stream)
+  :stop (.close patients-stream))
+
+
+(defn get-all-from-store []
+  (with-open [all (.all (.store patients-stream
+                                "patients-store"
                                 (QueryableStoreTypes/keyValueStore)))]
     (doall (map (fn [x] (.value x))
                 (iterator-seq all)))))
-
-(defn init []
-  (let [patients-stream (build-patients-stream p-kafka-util/kafka-config)]
-    (doto patients-stream
-      (.cleanUp)
-      (.start)
-      (.state))))
