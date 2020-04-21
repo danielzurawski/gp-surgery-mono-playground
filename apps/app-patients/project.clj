@@ -7,6 +7,7 @@
 
   :dependencies [[metosin/compojure-api "2.0.0-alpha30"]
                  [org.apache.kafka/kafka-streams "2.3.1"]
+                 [org.apache.kafka/kafka-streams-test-utils "2.3.1"]
                  [fundingcircle/jackdaw "0.6.7"]]
 
   :main patients.main
