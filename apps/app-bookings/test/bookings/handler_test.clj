@@ -19,10 +19,6 @@
                    (web-handler/map->WebHandler {})
                    [:bookings-producer :kafka-config])))
 
-#_:web-server #_(component/using
-                  (server/map->WebServer {:port 3000})
-                  [:web-handler])
-
 (deftest bookings-endpoint-tests
   (let [system-under-test (component/start test-system)
         handler (:handler (:web-handler system-under-test))]
