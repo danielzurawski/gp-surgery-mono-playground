@@ -10,7 +10,9 @@
                  [metosin/compojure-api "2.0.0-alpha30"]
                  [ring "1.8.0"]
                  [buddy/buddy-auth "2.2.0"]
-                 [mount "0.1.16"]]
+                 [mount "0.1.16"]
+                 [org.apache.kafka/kafka-streams "2.3.1"]
+                 [org.apache.kafka/kafka-streams-test-utils "2.3.1"]]
 
   :test-selectors
   {:unit (complement :integration)
@@ -33,6 +35,7 @@
    :project-dirs
    ["apps/app-api-gateway"
     "apps/app-patients"
+    "apps/app-bookings"
     "libs/*"
     "not-found"]}
 

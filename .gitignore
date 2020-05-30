@@ -1,4 +1,5 @@
 */target
+*/**/target
 /target
 /classes
 /checkouts
@@ -14,4 +15,7 @@ pom.xml.asc
 .hgignore
 .hg/
 .classpath
-
+.idea
+.DS_Store
+*.iml
+*/**/*.iml

@@ -26,20 +26,6 @@
     3. Prescriptions
         1. View my prescriptions
 
-## Repos
-1. API Gateway Service 
-2. Patients service
-    1. GET /patients
-    2. POST /patients
-    3. GET /patients/:id
-    4. POST /patients/:id
-1. Records service
-    1. GET /records?patientId
-    2. POST /records?patientId
-    3. GET /records/:id?patientId
-2. Appointments service
-    1. POST /appointments?patientId=x
-    2. GET /appointments?patientId
 
 ## Usage
 

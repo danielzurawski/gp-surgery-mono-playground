@@ -9,5 +9,5 @@
 (defn -main [& args]
   (mount/start)
   (jetty/run-jetty web-handler
-                   {:port  3000
+                   {:port  3001
                     :join? false}))
